@@ -4,12 +4,17 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import nicolagraziani.dao.EventDAO;
+import nicolagraziani.dao.PersonDAO;
+import nicolagraziani.entities.AthleticsCompetition;
 import nicolagraziani.entities.Concert;
 import nicolagraziani.entities.FootballMatch;
+import nicolagraziani.entities.Person;
 import nicolagraziani.enums.ConcertGenre;
 import nicolagraziani.enums.EventType;
+import nicolagraziani.enums.Gender;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -18,6 +23,7 @@ public class Application {
     public static void main(String[] args) {
         EntityManager em = emf.createEntityManager();
         EventDAO ed = new EventDAO(em);
+        PersonDAO pd = new PersonDAO(em);
 
         Concert c1 = new Concert("Rock Night", LocalDate.of(2025, 6, 10), "Serata rock", EventType.PUBBLICO, 5000, ConcertGenre.ROCK, true);
         Concert c2 = new Concert("Pop Festival", LocalDate.of(2025, 7, 5), "Festival pop estivo", EventType.PUBBLICO, 8000, ConcertGenre.POP, false);
@@ -41,6 +47,79 @@ public class Application {
         FootballMatch fm9 = new FootballMatch("Match 9", LocalDate.of(2025, 6, 9), "Campionato", EventType.PRIVATO, 20000, "Fiorentina", "Bologna", "Fiorentina", 1, 0);
         FootballMatch fm10 = new FootballMatch("Match 10", LocalDate.of(2025, 6, 10), "Campionato", EventType.PUBBLICO, 70000, "Torino", "Atalanta", "Atalanta", 3, 4);
 
+        Person p1 = new Person("Luca", "Rossi", "luca.rossi@gmail.com", LocalDate.of(1995, 3, 12), Gender.MALE);
+        Person p2 = new Person("Marco", "Bianchi", "marco.bianchi@gmail.com", LocalDate.of(1990, 7, 25), Gender.MALE);
+        Person p3 = new Person("Giulia", "Verdi", "giulia.verdi@gmail.com", LocalDate.of(1998, 11, 3), Gender.FEMALE);
+        Person p4 = new Person("Sara", "Neri", "sara.neri@gmail.com", LocalDate.of(2000, 1, 19), Gender.FEMALE);
+        Person p5 = new Person("Andrea", "Gallo", "andrea.gallo@gmail.com", LocalDate.of(1987, 5, 30), Gender.MALE);
+        Person p6 = new Person("Francesca", "Costa", "francesca.costa@gmail.com", LocalDate.of(1993, 9, 14), Gender.FEMALE);
+        Person p7 = new Person("Davide", "Romano", "davide.romano@gmail.com", LocalDate.of(1996, 2, 8), Gender.MALE);
+        Person p8 = new Person("Elena", "Greco", "elena.greco@gmail.com", LocalDate.of(1999, 6, 21), Gender.FEMALE);
+        Person p9 = new Person("Matteo", "Ferrari", "matteo.ferrari@gmail.com", LocalDate.of(1992, 12, 5), Gender.MALE);
+        Person p10 = new Person("Chiara", "Conti", "chiara.conti@gmail.com", LocalDate.of(2001, 4, 17), Gender.FEMALE);
+
+        List<Person> atleti1 = Arrays.asList(p1, p2, p3);
+        List<Person> atleti2 = Arrays.asList(p2, p4, p5);
+        List<Person> atleti3 = Arrays.asList(p1, p5, p6);
+        List<Person> atleti4 = Arrays.asList(p7, p8, p9);
+        List<Person> atleti5 = Arrays.asList(p1, p2, p10);
+
+        AthleticsCompetition ac1 = new AthleticsCompetition(
+                "100m Sprint",
+                LocalDate.of(2025, 6, 1),
+                "Gara veloce",
+                EventType.PUBBLICO,
+                100,
+                atleti1,
+                p1   // vincitore
+        );
+
+        AthleticsCompetition ac2 = new AthleticsCompetition(
+                "Salto in lungo",
+                LocalDate.of(2025, 6, 2),
+                "Gara tecnica",
+                EventType.PUBBLICO,
+                80,
+                atleti2,
+                p2   // vincitore
+        );
+
+        AthleticsCompetition ac3 = new AthleticsCompetition(
+                "Maratona",
+                LocalDate.of(2025, 6, 3),
+                "Gara lunga",
+                EventType.PRIVATO,
+                200,
+                atleti3,
+                p1   // vincitore di nuovo (IMPORTANTE)
+        );
+
+        AthleticsCompetition ac4 = new AthleticsCompetition(
+                "Staffetta",
+                LocalDate.of(2025, 6, 4),
+                "Gara a squadre",
+                EventType.PUBBLICO,
+                120,
+                atleti4,
+                p8
+        );
+
+        AthleticsCompetition ac5 = new AthleticsCompetition(
+                "200m Sprint",
+                LocalDate.of(2025, 6, 5),
+                "Gara veloce",
+                EventType.PUBBLICO,
+                100,
+                atleti5,
+                p10
+        );
+
+        ed.save(ac1);
+        ed.save(ac2);
+        ed.save(ac3);
+        ed.save(ac4);
+        ed.save(ac5);
+
 //        ESERCIZIO 1
         System.out.println("-------------Selezione in base ai concerti in streaming-------------");
         List<Concert> streamingConcert = ed.getConcertInStreaming(false);
@@ -52,11 +131,16 @@ public class Application {
 
 //        ESERCIZIO 2
         System.out.println("---------------Partite vinte in trasferta------------");
-        List<FootballMatch> fmTest = ed.getAwayGamesWon();
-        fmTest.forEach(System.out::println);
+        List<FootballMatch> awayWin = ed.getAwayGamesWon();
+        awayWin.forEach(System.out::println);
         System.out.println("----------------Partite vinte in casa-------------");
-        List<FootballMatch> fmTest1 = ed.getHomeGamesWon();
-        fmTest1.forEach(System.out::println);
+        List<FootballMatch> homeWin = ed.getHomeGamesWon();
+        homeWin.forEach(System.out::println);
+
+//      EXTRAS
+        System.out.println("----------------Partite pareggiate-------------");
+        List<FootballMatch> drawnMatch = ed.getDrawnGames();
+        drawnMatch.forEach(System.out::println);
 
 
         em.close();

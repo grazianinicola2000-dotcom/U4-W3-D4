@@ -3,9 +3,7 @@ package nicolagraziani.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
-import nicolagraziani.entities.Concert;
-import nicolagraziani.entities.Event;
-import nicolagraziani.entities.FootballMatch;
+import nicolagraziani.entities.*;
 import nicolagraziani.enums.ConcertGenre;
 import nicolagraziani.exceptions.EventNotFoundException;
 
@@ -61,6 +59,17 @@ public class EventDAO {
 
     public List<FootballMatch> getAwayGamesWon() {
         TypedQuery<FootballMatch> query = em.createNamedQuery("getAwayGamesWon", FootballMatch.class);
+        return query.getResultList();
+    }
+
+    public List<FootballMatch> getDrawnGames() {
+        TypedQuery<FootballMatch> query = em.createNamedQuery("getDrawnGames", FootballMatch.class);
+        return query.getResultList();
+    }
+
+    public List<AthleticsCompetition> getAthleticsCompetitionByWinner(Person p) {
+        TypedQuery<AthleticsCompetition> query = em.createQuery("SELECT ac FROM AthleticsCompetition ac WHERE ac.winner = :p", AthleticsCompetition.class)
+                .setParameter("p", p);
         return query.getResultList();
     }
 }

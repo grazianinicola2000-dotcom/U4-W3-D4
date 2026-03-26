@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Table(name = "football_match")
 @NamedQuery(name = "getHomeGamesWon", query = "SELECT fm FROM FootballMatch fm WHERE fm.homeTeam = fm.winningTeam")
 @NamedQuery(name = "getAwayGamesWon", query = "SELECT fm FROM FootballMatch fm WHERE fm.awayTeam = fm.winningTeam")
+@NamedQuery(name = "getDrawnGames", query = "SELECT fm FROM FootballMatch fm WHERE fm.winningTeam IS null")
 public class FootballMatch extends Event {
     @Column(name = "home_team")
     private String homeTeam;

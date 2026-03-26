@@ -26,7 +26,7 @@ public class Person {
     private LocalDate dateOfBirth;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "gender", nullable = false, length = 1)
+    @Column(name = "gender", nullable = false, length = 10)
     private Gender gender;
 
     @OneToMany(mappedBy = "person")
