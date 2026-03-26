@@ -72,4 +72,12 @@ public class EventDAO {
                 .setParameter("p", p);
         return query.getResultList();
     }
+
+    public List<AthleticsCompetition> getAthleticsCompetitionByParticipant(Person p) {
+        TypedQuery<AthleticsCompetition> query = em.createQuery("SELECT ac FROM AthleticsCompetition ac WHERE :p MEMBER OF ac.athletes", AthleticsCompetition.class)
+                .setParameter("p", p);
+        return query.getResultList();
+    }
+
+
 }

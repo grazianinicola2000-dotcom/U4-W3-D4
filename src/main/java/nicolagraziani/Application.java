@@ -11,10 +11,8 @@ import nicolagraziani.entities.FootballMatch;
 import nicolagraziani.entities.Person;
 import nicolagraziani.enums.ConcertGenre;
 import nicolagraziani.enums.EventType;
-import nicolagraziani.enums.Gender;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -47,78 +45,84 @@ public class Application {
         FootballMatch fm9 = new FootballMatch("Match 9", LocalDate.of(2025, 6, 9), "Campionato", EventType.PRIVATO, 20000, "Fiorentina", "Bologna", "Fiorentina", 1, 0);
         FootballMatch fm10 = new FootballMatch("Match 10", LocalDate.of(2025, 6, 10), "Campionato", EventType.PUBBLICO, 70000, "Torino", "Atalanta", "Atalanta", 3, 4);
 
-        Person p1 = new Person("Luca", "Rossi", "luca.rossi@gmail.com", LocalDate.of(1995, 3, 12), Gender.MALE);
-        Person p2 = new Person("Marco", "Bianchi", "marco.bianchi@gmail.com", LocalDate.of(1990, 7, 25), Gender.MALE);
-        Person p3 = new Person("Giulia", "Verdi", "giulia.verdi@gmail.com", LocalDate.of(1998, 11, 3), Gender.FEMALE);
-        Person p4 = new Person("Sara", "Neri", "sara.neri@gmail.com", LocalDate.of(2000, 1, 19), Gender.FEMALE);
-        Person p5 = new Person("Andrea", "Gallo", "andrea.gallo@gmail.com", LocalDate.of(1987, 5, 30), Gender.MALE);
-        Person p6 = new Person("Francesca", "Costa", "francesca.costa@gmail.com", LocalDate.of(1993, 9, 14), Gender.FEMALE);
-        Person p7 = new Person("Davide", "Romano", "davide.romano@gmail.com", LocalDate.of(1996, 2, 8), Gender.MALE);
-        Person p8 = new Person("Elena", "Greco", "elena.greco@gmail.com", LocalDate.of(1999, 6, 21), Gender.FEMALE);
-        Person p9 = new Person("Matteo", "Ferrari", "matteo.ferrari@gmail.com", LocalDate.of(1992, 12, 5), Gender.MALE);
-        Person p10 = new Person("Chiara", "Conti", "chiara.conti@gmail.com", LocalDate.of(2001, 4, 17), Gender.FEMALE);
+//        Person p1 = new Person("Luca", "Rossi", "luca.rossi@gmail.com", LocalDate.of(1995, 3, 12), Gender.MALE);
+//        Person p2 = new Person("Marco", "Bianchi", "marco.bianchi@gmail.com", LocalDate.of(1990, 7, 25), Gender.MALE);
+//        Person p3 = new Person("Giulia", "Verdi", "giulia.verdi@gmail.com", LocalDate.of(1998, 11, 3), Gender.FEMALE);
+//        Person p4 = new Person("Sara", "Neri", "sara.neri@gmail.com", LocalDate.of(2000, 1, 19), Gender.FEMALE);
+//        Person p5 = new Person("Andrea", "Gallo", "andrea.gallo@gmail.com", LocalDate.of(1987, 5, 30), Gender.MALE);
+//        Person p6 = new Person("Francesca", "Costa", "francesca.costa@gmail.com", LocalDate.of(1993, 9, 14), Gender.FEMALE);
+//        Person p7 = new Person("Davide", "Romano", "davide.romano@gmail.com", LocalDate.of(1996, 2, 8), Gender.MALE);
+//        Person p8 = new Person("Elena", "Greco", "elena.greco@gmail.com", LocalDate.of(1999, 6, 21), Gender.FEMALE);
+//        Person p9 = new Person("Matteo", "Ferrari", "matteo.ferrari@gmail.com", LocalDate.of(1992, 12, 5), Gender.MALE);
+//        Person p10 = new Person("Chiara", "Conti", "chiara.conti@gmail.com", LocalDate.of(2001, 4, 17), Gender.FEMALE);
 
-        List<Person> atleti1 = Arrays.asList(p1, p2, p3);
-        List<Person> atleti2 = Arrays.asList(p2, p4, p5);
-        List<Person> atleti3 = Arrays.asList(p1, p5, p6);
-        List<Person> atleti4 = Arrays.asList(p7, p8, p9);
-        List<Person> atleti5 = Arrays.asList(p1, p2, p10);
+        Person p1 = pd.getById("00e8f7f2-b01b-4e42-9275-a81d1dea358c");
+        Person p2 = pd.getById("199bc579-ab13-43bc-a1b1-b765ba8c1061");
+        Person p3 = pd.getById("3ebc5ae3-b22d-4ce5-9bd5-d307be7605a3");
+        Person p4 = pd.getById("7abac4d6-a4a9-4f26-a34e-8c6dd85f7db3");
+        Person p5 = pd.getById("8b4c594d-ceee-4bad-8fb7-8edd0543f0fc");
+        Person p6 = pd.getById("b3c9f2c6-e6e2-43eb-bcc2-c284ed32fe19");
+        Person p7 = pd.getById("b579eefe-5a78-4e0e-9ffa-e56ec5024406");
+        Person p8 = pd.getById("c1292605-ed13-4415-bc69-e7bfb5677311");
+        Person p9 = pd.getById("c6b44dc0-049e-49f3-bca3-9759605f386f");
+        Person p10 = pd.getById("f581ef54-360c-4581-a451-b6d19c0984c4");
 
-        AthleticsCompetition ac1 = new AthleticsCompetition(
-                "100m Sprint",
-                LocalDate.of(2025, 6, 1),
-                "Gara veloce",
-                EventType.PUBBLICO,
-                100,
-                atleti1,
-                p1   // vincitore
-        );
+//        List<Person> atleti1 = Arrays.asList(p1, p2, p3);
+//        List<Person> atleti2 = Arrays.asList(p2, p4, p5);
+//        List<Person> atleti3 = Arrays.asList(p1, p5, p6);
+//        List<Person> atleti4 = Arrays.asList(p7, p8, p9);
+//        List<Person> atleti5 = Arrays.asList(p1, p2, p10);
 
-        AthleticsCompetition ac2 = new AthleticsCompetition(
-                "Salto in lungo",
-                LocalDate.of(2025, 6, 2),
-                "Gara tecnica",
-                EventType.PUBBLICO,
-                80,
-                atleti2,
-                p2   // vincitore
-        );
+//        AthleticsCompetition ac1 = new AthleticsCompetition(
+//                "100m Sprint",
+//                LocalDate.of(2025, 6, 1),
+//                "Gara veloce",
+//                EventType.PUBBLICO,
+//                100,
+//                atleti1,
+//                p1   // vincitore
+//        );
+//
+//        AthleticsCompetition ac2 = new AthleticsCompetition(
+//                "Salto in lungo",
+//                LocalDate.of(2025, 6, 2),
+//                "Gara tecnica",
+//                EventType.PUBBLICO,
+//                80,
+//                atleti2,
+//                p2   // vincitore
+//        );
+//
+//        AthleticsCompetition ac3 = new AthleticsCompetition(
+//                "Maratona",
+//                LocalDate.of(2025, 6, 3),
+//                "Gara lunga",
+//                EventType.PRIVATO,
+//                200,
+//                atleti3,
+//                p1   // vincitore di nuovo (IMPORTANTE)
+//        );
+//
+//        AthleticsCompetition ac4 = new AthleticsCompetition(
+//                "Staffetta",
+//                LocalDate.of(2025, 6, 4),
+//                "Gara a squadre",
+//                EventType.PUBBLICO,
+//                120,
+//                atleti4,
+//                p8
+//        );
+//
+//        AthleticsCompetition ac5 = new AthleticsCompetition(
+//                "200m Sprint",
+//                LocalDate.of(2025, 6, 5),
+//                "Gara veloce",
+//                EventType.PUBBLICO,
+//                100,
+//                atleti5,
+//                p10
+//        );
 
-        AthleticsCompetition ac3 = new AthleticsCompetition(
-                "Maratona",
-                LocalDate.of(2025, 6, 3),
-                "Gara lunga",
-                EventType.PRIVATO,
-                200,
-                atleti3,
-                p1   // vincitore di nuovo (IMPORTANTE)
-        );
-
-        AthleticsCompetition ac4 = new AthleticsCompetition(
-                "Staffetta",
-                LocalDate.of(2025, 6, 4),
-                "Gara a squadre",
-                EventType.PUBBLICO,
-                120,
-                atleti4,
-                p8
-        );
-
-        AthleticsCompetition ac5 = new AthleticsCompetition(
-                "200m Sprint",
-                LocalDate.of(2025, 6, 5),
-                "Gara veloce",
-                EventType.PUBBLICO,
-                100,
-                atleti5,
-                p10
-        );
-
-        ed.save(ac1);
-        ed.save(ac2);
-        ed.save(ac3);
-        ed.save(ac4);
-        ed.save(ac5);
 
 //        ESERCIZIO 1
         System.out.println("-------------Selezione in base ai concerti in streaming-------------");
@@ -138,11 +142,20 @@ public class Application {
         homeWin.forEach(System.out::println);
 
 //      EXTRAS
+//        1
         System.out.println("----------------Partite pareggiate-------------");
         List<FootballMatch> drawnMatch = ed.getDrawnGames();
         drawnMatch.forEach(System.out::println);
 
-
+//        2
+        System.out.println("---------------Gare di atletica per vincitore-------------");
+        List<AthleticsCompetition> competitionsByWinner = ed.getAthleticsCompetitionByWinner(p1);
+        competitionsByWinner.forEach(System.out::println);
+//       3
+        System.out.println("---------------Gare di atletica per partecipante-------------");
+        List<AthleticsCompetition> competitionsByPerson = ed.getAthleticsCompetitionByParticipant(p2);
+        competitionsByPerson.forEach(System.out::println);
+        
         em.close();
         emf.close();
     }
